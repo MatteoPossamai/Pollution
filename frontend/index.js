@@ -1,15 +1,13 @@
 //AJAX call to retrive data
-let mymap = L.map('map').setView([51.505, -0.09], 13);
+let mymap = L.map('map').setView([46.16, 12.08], 11);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
 	id: 'mapbox/streets-v11',
 	tileSize: 512,
 	zoomOffset: -1,
-	zoomSnap:2
+	zoomSnap:0
 }).addTo(mymap);
-	
-mymap.panTo(new L.LatLng(46.16, 12.079));
 
 const getPoint = () => {
 	//AJAX call to recive all the points into the array
