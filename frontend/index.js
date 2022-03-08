@@ -1,5 +1,5 @@
 //AJAX call to retrive data
-let mymap = L.map('map').setView([46.16, 12.08], 11);
+let mymap = L.map('map').setView([46.16, 12.08], 9);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
@@ -9,13 +9,25 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 	zoomSnap:0
 }).addTo(mymap);
 
-const getPoint = () => {
-	//AJAX call to recive all the points into the array
-	const points = [[46.160498931353,12.0793326473094],[46.2257853685455,12.1180456431664]];
+const getPoint = async () => {
+	//Generate the request object
+	let xhr = new XMLHttpRequest();
 
-	points.forEach((point) =>{
-		let marker = L.marker([point[0], point[1]]).addTo(mymap);
-	})
+	xhr.open('GET', 'http://localhost:5000/allpoints', true);
+
+	xhr.onload = function(){
+		//If it is succesful
+		if(this.status == 200){
+			console.log(this.responseText)
+			let points = JSON.parse(this.responseText); 
+			points.forEach((point) =>{
+				console.log(point)
+				let marker = L.marker([point.latitudine, point.longitudine]).addTo(mymap);
+			})
+		}
+	}
+	//Send the request and wait for responde
+	xhr.send();
 }
 /*
 	var marker = L.marker([51.5, -0.09]).addTo(mymap);

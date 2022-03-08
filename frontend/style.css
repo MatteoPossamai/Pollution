@@ -37,3 +37,15 @@ body{
     border: 2px solid black;
     border-radius: 5px;
 }
+
+.insert{
+    padding:20px;
+    border: 3px #000 solid;
+    border-radius: 10px;
+    width: 400px;
+    margin: auto;
+    margin-top:20px;
+    display:flex;
+    flex-direction: column;
+    background: linear-gradient(#e66465, #9198e5);
+}

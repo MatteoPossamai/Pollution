@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	</head>
+	
+	<body>
+        <a href="./index.html" class="home">Ritorna alla homepage</a>
+		<h1 class="title">Pagina di inserimento</h1>
+
+        <form method="post">
+            <select name="typesof" id="typesof" onchange='changeActive()'>
+                <option value="campione">Campione</option>
+                <option value="misurazione">Misurazione</option>
+                <option value="sito">Sito</option>
+                <option value="luogo">Luogo</option>
+              </select>
+        
+
+            <div id="campione" class="insert">
+                <h1>Nuovo campione</h1>
+                <p>Inserisci il tipo di campione:</p>
+                <input type="text" placeholder="Campione..." />
+                <input type="submit" text="Aggiungi" />
+            </div>
+
+            <div id="misurazione" class="insert">
+                <h1>Nuova misurazione</h1>
+                <p>Inserire la quantità misurata:</p>
+                <input type="text" placeholder="Quantità" />
+                <p>Tipo campione:</p>
+                <select>
+                    <!--Inserire tutti i campioni che trovi nel database-->
+                </select>
+                <p>Meteo del giorno:</p>
+                <input type="text" placeholder="Meteo" />
+                <p>Inserire la quantità misurata:</p>
+                <input type="text" placeholder="Quantità" />
+                <p>Note:</p>
+                <input type="text" placeholder="Note" />
+                <p>Luogo:</p>
+                <select>
+                    <!--Inserire tutti i luoghi che trovi nel database-->
+                </select>
+                <p>Data:</p>
+                <input type="date" />
+                <input type="submit" text="Aggiungi" />
+            </div>
+
+            <div id="sito" class="insert">
+                <h1>Nuovo sito</h1>
+                <p>Inserisci il tipo di sito:</p>
+                <input type="text" placeholder="Sito..." />
+                <input type="submit" text="Aggiungi" />
+            </div>
+
+            <div id="luogo" class="insert">
+                <h1>Nuovo luogo</h1>
+                <p>Nome del luogo:</p>
+                <input type="text" placeholder="Nome del luogo" />
+                <p>Tipo sito:</p>
+                <select>
+                    <!--Inserire tutti i siti che trovi nel database-->
+                </select>
+                <p>Latitudine:</p>
+                <input type="number" placeholder="Latitudine" />
+                <p>Longitudine:</p>
+                <input type="number" placeholder="Longitudine" />
+                <p>Descrizione:</p>
+                <input type="text" placeholder="Descrizione" />
+                <p>Indirizzo:</p>
+                <input type="text" placeholder="Indirizzo" />
+                <input type="submit" text="Aggiungi" />
+            </div>
+
+        </form>
+		
+		<script type="text/javascript" src="insert.js"></script>
+	</body>
+</html>
