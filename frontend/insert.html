@@ -5,11 +5,11 @@
 		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 	</head>
 	
-	<body>
+	<body onload="getData()">
         <a href="./index.html" class="home">Ritorna alla homepage</a>
 		<h1 class="title">Pagina di inserimento</h1>
 
-        <form method="post">
+        <div>
             <select name="typesof" id="typesof" onchange='changeActive()'>
                 <option value="campione">Campione</option>
                 <option value="misurazione">Misurazione</option>
@@ -18,63 +18,75 @@
               </select>
         
 
-            <div id="campione" class="insert">
+            <form mothod="POST" id="campione" class="insert">
                 <h1>Nuovo campione</h1>
                 <p>Inserisci il tipo di campione:</p>
-                <input type="text" placeholder="Campione..." />
-                <input type="submit" text="Aggiungi" />
-            </div>
+                <input type="text" id="camp" placeholder="Campione..." />
+                <br/>
+                <button type="submit">Aggiungi</button>
+            </form>
 
-            <div id="misurazione" class="insert">
+            <form method="POST" id="misurazione" class="insert">
                 <h1>Nuova misurazione</h1>
-                <p>Inserire la quantità misurata:</p>
-                <input type="text" placeholder="Quantità" />
+                <p>Inserire la quantità di nylon6:</p>
+                <input type="number" id="ny" placeholder="Quantità" />
+                <p>Inserire la quantità di polyethylene terephthalate:</p>
+                <input type="number" id="pt" placeholder="Quantità" />
+                <p>Inserire la quantità di polypropylene:</p>
+                <input type="number" id="pp" placeholder="Quantità" />
+                <p>Inserire la quantità di polyethylene:</p>
+                <input type="number" id="plt" placeholder="Quantità" />
+                <p>Inserire la quantità di hostasol green:</p>
+                <input type="number" id="hg" placeholder="Quantità" />
+                <p>Inserire la quantità di phthalocyanine:</p>
+                <input type="number" id="ptl" placeholder="Quantità" />
                 <p>Tipo campione:</p>
-                <select>
+                <select id="sel1">
                     <!--Inserire tutti i campioni che trovi nel database-->
                 </select>
                 <p>Meteo del giorno:</p>
-                <input type="text" placeholder="Meteo" />
-                <p>Inserire la quantità misurata:</p>
-                <input type="text" placeholder="Quantità" />
+                <input type="text" id="meteo" placeholder="Meteo" />
                 <p>Note:</p>
-                <input type="text" placeholder="Note" />
+                <input type="text" id="note" placeholder="Note" />
                 <p>Luogo:</p>
-                <select>
+                <select id="sel2">
                     <!--Inserire tutti i luoghi che trovi nel database-->
                 </select>
                 <p>Data:</p>
-                <input type="date" />
-                <input type="submit" text="Aggiungi" />
-            </div>
+                <input id="data" type="date" />
+                <br/>
+                <button type="submit">Aggiungi</button>
+            </form>
 
-            <div id="sito" class="insert">
+            <form method="POST" id="sito" class="insert">
                 <h1>Nuovo sito</h1>
                 <p>Inserisci il tipo di sito:</p>
-                <input type="text" placeholder="Sito..." />
-                <input type="submit" text="Aggiungi" />
-            </div>
+                <input type="text" id="sit" placeholder="Sito..." />
+                <br/>
+                <button type="submit">Aggiungi</button>
+            </form>
 
-            <div id="luogo" class="insert">
+            <form method="POST" id="luogo" class="insert">
                 <h1>Nuovo luogo</h1>
                 <p>Nome del luogo:</p>
-                <input type="text" placeholder="Nome del luogo" />
+                <input type="text" id="nome" placeholder="Nome del luogo" />
                 <p>Tipo sito:</p>
-                <select>
+                <select id="sel3">
                     <!--Inserire tutti i siti che trovi nel database-->
                 </select>
                 <p>Latitudine:</p>
-                <input type="number" placeholder="Latitudine" />
+                <input type="number" id="lat" placeholder="Latitudine" />
                 <p>Longitudine:</p>
-                <input type="number" placeholder="Longitudine" />
+                <input type="number" id="lng" placeholder="Longitudine" />
                 <p>Descrizione:</p>
-                <input type="text" placeholder="Descrizione" />
+                <input type="text" id="desc" placeholder="Descrizione" />
                 <p>Indirizzo:</p>
-                <input type="text" placeholder="Indirizzo" />
-                <input type="submit" text="Aggiungi" />
-            </div>
+                <input type="text" id="ind" placeholder="Indirizzo" />
+                <br/>
+                <button type="submit">Aggiungi</button>
+            </form>
 
-        </form>
+        </div>
 		
 		<script type="text/javascript" src="insert.js"></script>
 	</body>

@@ -2,6 +2,7 @@
 
 body{
     text-align:center;
+    font-family: 'EB Garamond', serif;
 }
 
 .title{
@@ -45,7 +46,5 @@ body{
     width: 400px;
     margin: auto;
     margin-top:20px;
-    display:flex;
-    flex-direction: column;
     background: linear-gradient(#e66465, #9198e5);
 }

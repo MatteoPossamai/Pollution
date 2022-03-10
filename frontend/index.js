@@ -1,5 +1,6 @@
 //AJAX call to retrive data
 let mymap = L.map('map').setView([46.16, 12.08], 9);
+let points = [];
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
@@ -9,20 +10,32 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 	zoomSnap:0
 }).addTo(mymap);
 
+
+const clicked = (e) => {	
+	//Check what marker has been clicked, and then print the name
+	points.forEach(point=>{
+		if(point.latitudine === e.latlng.lat && point.longitudine === e.latlng.lng){
+			console.log(`${point.nome}`)
+		}
+	});
+};
+
+
 const getPoint = async () => {
 	//Generate the request object
 	let xhr = new XMLHttpRequest();
 
 	xhr.open('GET', 'http://localhost:5000/allpoints', true);
 
+	//Gets data from the API, and puts all the positions
 	xhr.onload = function(){
 		//If it is succesful
 		if(this.status == 200){
-			console.log(this.responseText)
-			let points = JSON.parse(this.responseText); 
+			points = JSON.parse(this.responseText); 
 			points.forEach((point) =>{
-				console.log(point)
 				let marker = L.marker([point.latitudine, point.longitudine]).addTo(mymap);
+				marker.bindPopup(`${point.nome}`).openPopup();
+				marker.on('click', clicked);
 			})
 		}
 	}

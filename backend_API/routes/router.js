@@ -102,15 +102,14 @@ router.post('/addmisurazione', async (req, res) =>{
 });
 
 //Get information about a specific misuration
-//Non completato
-
 router.get('/getmisurazione/:id', async (req, res) => {
     const id = req.params.id;
 
     try {
         const misurazione = await pool.query(
             `SELECT *
-            FROM misurazione 
+            FROM misurazione JOIN luogo
+                ON luogo = nome
             WHERE id = $1`, [id]
         );
         res.json(misurazione.rows[0]);
@@ -119,5 +118,40 @@ router.get('/getmisurazione/:id', async (req, res) => {
     }
 });
 
+router.get('/getallcampioni', async (req, res) => {
+
+    try {
+        const campioni = await pool.query(
+            `SELECT *
+            FROM tipoCampione`);
+        res.json(campioni.rows);
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+router.get('/getallsiti', async (req, res) => {
+
+    try {
+        const siti = await pool.query(
+            `SELECT *
+            FROM tipoSito`);
+        res.json(siti.rows);
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+router.get('/getallluoghi', async (req, res) => {
+
+    try {
+        const luoghi = await pool.query(
+            `SELECT *
+            FROM luogo`);
+        res.json(luoghi.rows);
+    }catch(err){
+        console.error(err.message);
+    }
+});
 
 module.exports = router;
