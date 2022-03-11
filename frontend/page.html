@@ -5,26 +5,37 @@
 		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 	</head>
 	
-	<body>
+	<body onload="getDatas()">
         <a href="./index.html" class="home">Ritorna alla homepage</a>
-		<h1 class="title">Campione</h1>
+		<h1 class="title">Misurazione</h1>
+        <div id="error"></div>
 		<div class="sub">
-			<p><b>Id del campione:</b></p>
-            <p><b>Nome del sito:</b></p>
-            <p><b>Risultato:</b></p>
-            <p><b>Tipo plastica:</b></p>
-            <p><b>Note:</b></p>
-            <p><b>Indirizzo:</b></p>
-            <p><b>Latitudine:</b></p>
-            <p><b>Longitudine:</b></p>
-            <p><b>Descrizione:</b></p>
-            <p><b>Foto:</b></p>
+			<p id="id"><b>Id della misurazione:</b></p>
+            <p id="nome"><b>Nome del sito:</b></p>
+            <p id="tipo"><b>Tipo di campione:</b></p>
+            <p><b>Rilevazioni plastica:</b></p>
+            <div id="plastica">
+                <p id="ny">Nylon 6:</p>
+                <p id="pt">Polyethylene terephthalate:</p>
+                <p id="pp">Polypropylene:</p>
+                <p id="plt">Polyethylene:</p>
+                <p id="hg">Hostasol green:</p>
+                <p id="ptl">Phthalocyanine:</p>
+            </div>
+            <p id="note"><b>Note:</b></p>
+            <p id="ind"><b>Indirizzo(se esistente):</b></p>
+            <p id="lat"><b>Latitudine:</b></p>
+            <p id="lon"><b>Longitudine:</b></p>
+            <p id="data"><b>Data:</b></p>
+            <p id="desc"><b>Descrizione:</b></p>
+            <p id="im1"><b>Foto luogo:</b></p>
 
-            <p><b>Foto:</b></p>
-
-            <p><b>Note:</b></p>
+            <p id="im2"><b>Foto del giorno della misurazione:</b></p>
 
         </div>
-		<script type="text/javascript" src="index.js"></script>
+
+        <button>See all the story of the site</button>
+
+		<script type="text/javascript" src="page.js"></script>
 	</body>
 </html>

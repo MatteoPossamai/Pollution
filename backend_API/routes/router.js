@@ -102,17 +102,18 @@ router.post('/addmisurazione', async (req, res) =>{
 });
 
 //Get information about a specific misuration
-router.get('/getmisurazione/:id', async (req, res) => {
-    const id = req.params.id;
+router.get('/getmisurazione/:nome', async (req, res) => {
+    const nome = req.params.nome;
 
     try {
         const misurazione = await pool.query(
             `SELECT *
             FROM misurazione JOIN luogo
                 ON luogo = nome
-            WHERE id = $1`, [id]
+            WHERE nome = $1
+            ORDER BY dataM DESC;`, [nome]
         );
-        res.json(misurazione.rows[0]);
+        res.json(misurazione.rows);
     }catch(err){
         console.error(err.message);
     }

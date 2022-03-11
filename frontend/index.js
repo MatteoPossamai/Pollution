@@ -15,7 +15,7 @@ const clicked = (e) => {
 	//Check what marker has been clicked, and then print the name
 	points.forEach(point=>{
 		if(point.latitudine === e.latlng.lat && point.longitudine === e.latlng.lng){
-			console.log(`${point.nome}`)
+			location.replace(`http://127.0.0.1:5500/page.html?nome=${point.nome}`)
 		}
 	});
 };
