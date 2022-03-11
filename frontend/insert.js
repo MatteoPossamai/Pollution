@@ -2,6 +2,7 @@ const campione = document.getElementById('campione');
 const misurazione = document.getElementById('misurazione');  
 const sito = document.getElementById('sito');
 const luogo = document.getElementById('luogo');
+const error = document.getElementById('error');
 
 misurazione.style.display = "none";
 sito.style.display = "none";
@@ -15,33 +16,40 @@ const changeActive = () =>{
             campione.style.display = "block"
             misurazione.style.display = "none";
             sito.style.display = "none";
-            luogo.style.display = "none";   
+            luogo.style.display = "none"; 
+            error.style.display = "none"; 
             break;
         case "misurazione":
             campione.style.display = "none"
             misurazione.style.display = "block";
             sito.style.display = "none";
-            luogo.style.display = "none";   
+            luogo.style.display = "none"; 
+            error.style.display = "none";   
             break;
         case "sito":
             campione.style.display = "none"
             misurazione.style.display = "none";
             sito.style.display = "block";
-            luogo.style.display = "none";   
+            luogo.style.display = "none"; 
+            error.style.display = "none";   
             break;
         case "luogo":
             campione.style.display = "none"
             misurazione.style.display = "none";
             sito.style.display = "none";
-            luogo.style.display = "block";   
+            luogo.style.display = "block";
+            error.style.display = "none";    
             break;
     }
 };
 
 campione.addEventListener('submit', (e) => {
+    e.preventDefault();
+
     let camp = document.getElementById('camp').value;
     if(!camp){
-        console.log('Error')
+        error.style.display = 'block';
+        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
     }else{
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:5000/addtipocampione', true);
@@ -51,6 +59,7 @@ campione.addEventListener('submit', (e) => {
 });
 
 misurazione.addEventListener('submit', (e) => {
+    e.preventDefault();
     //Plastics
     let ny = document.getElementById('ny').value;
     let pt = document.getElementById('pt').value;
@@ -67,7 +76,8 @@ misurazione.addEventListener('submit', (e) => {
     let data = document.getElementById('data').value;
 
     if(!ny || !pt || !pp || !plt || !hg || !ptl){
-        console.log('Error')
+        error.style.display = 'block'
+        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
     }else{
         let res = JSON.stringify({
             'ny':ny,
@@ -90,9 +100,12 @@ misurazione.addEventListener('submit', (e) => {
 });
 
 sito.addEventListener('submit', (e) => {
+    e.preventDefault();
+
     let sit = document.getElementById('sit').value;
     if(!sit){
-        console.log('Error')
+        error.style.display = 'block'
+        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
     }else{
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:5000/addtiposito', true);
@@ -102,6 +115,8 @@ sito.addEventListener('submit', (e) => {
 });
 
 luogo.addEventListener('submit', (e) => {
+    e.preventDefault();
+
     let nome = document.getElementById('nome').value;
     let sel3 = document.getElementById('sel3').value;
     let lat = document.getElementById('lat').value;
@@ -109,7 +124,8 @@ luogo.addEventListener('submit', (e) => {
     let desc = document.getElementById('desc').value;
     let ind = document.getElementById('ind').value;
     if(!nome || !lat || !lng ){
-        console.log('Error')
+        error.style.display = 'block'
+        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
     }else{
         let res = JSON.stringify({
             'nome':nome,
