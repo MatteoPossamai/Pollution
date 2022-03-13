@@ -8,33 +8,51 @@
 	<body onload="getDatas()">
         <a href="./index.html" class="home">Ritorna alla homepage</a>
 		<h1 class="title">Misurazione</h1>
-        <div id="error"></div>
+        <div id="error"></div>        
 		<div class="sub">
-			<p id="id"><b>Id della misurazione:</b></p>
-            <p id="nome"><b>Nome del sito:</b></p>
-            <p id="tipo"><b>Tipo di campione:</b></p>
+			<p id="id"></p>
+            <p id="nome"></p>
+            <p id="tipo"></p>
             <p><b>Rilevazioni plastica:</b></p>
             <div id="plastica">
-                <p id="ny">Nylon 6:</p>
-                <p id="pt">Polyethylene terephthalate:</p>
-                <p id="pp">Polypropylene:</p>
-                <p id="plt">Polyethylene:</p>
-                <p id="hg">Hostasol green:</p>
-                <p id="ptl">Phthalocyanine:</p>
+                <p id="ny"></p>
+                <p id="pt"></p>
+                <p id="pp"></p>
+                <p id="plt"></p>
+                <p id="hg"></p>
+                <p id="ptl"></p>
             </div>
-            <p id="note"><b>Note:</b></p>
-            <p id="ind"><b>Indirizzo(se esistente):</b></p>
-            <p id="lat"><b>Latitudine:</b></p>
-            <p id="lon"><b>Longitudine:</b></p>
-            <p id="data"><b>Data:</b></p>
-            <p id="desc"><b>Descrizione:</b></p>
-            <p id="im1"><b>Foto luogo:</b></p>
-
-            <p id="im2"><b>Foto del giorno della misurazione:</b></p>
-
+            <p id="note"><b></b></p>
+            <p id="ind"><b></b></p>
+            <p id="lat"><b></b></p>
+            <p id="lon"><b></b></p>
+            <p id="data"><b></b></p>
+            <p id="desc"><b></b></p>
+            <p id="im1"><b></b></p>
+            <p id="im2"><b></b></p>
         </div>
 
-        <button>See all the story of the site</button>
+        <button id="but" onclick="tableV()">Visualizza tutta la storia del sito</button>
+
+        <table id="tab" style="font-size:10pt">
+            <thead>
+                <th>ID</th>
+                <th>Nome sito</th>
+                <th>Tipo campione</th>
+                <th>Nylon 6</th>
+                <th>Polyethylene terephthalate</th>
+                <th>Polypropylene</th>
+                <th>Polyethylene</th>
+                <th>Hostasol green</th>
+                <th>Phthalocyanine</th>
+                <th>Note</th>
+                <th>Indirizzo (se esistente)</th>
+                <th>Latitudine</th>
+                <th>Longitudine</th>
+                <th>Data</th>
+                <th>Descrizione</th>
+            </thead>
+        </table>
 
 		<script type="text/javascript" src="page.js"></script>
 	</body>

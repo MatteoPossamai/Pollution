@@ -14,6 +14,29 @@ const lon = document.getElementById('lon');
 const desc = document.getElementById('desc');
 const dataM = document.getElementById('data');
 const err = document.getElementById('error');
+const tab = document.getElementById('tab');
+const but = document.getElementById('but');
+
+const tHead = `<thead>
+<th>ID</th>
+<th>Nome sito</th>
+<th>Tipo campione</th>
+<th>Nylon 6</th>
+<th>Polyethylene terephthalate</th>
+<th>Polypropylene</th>
+<th>Polyethylene</th>
+<th>Hostasol green</th>
+<th>Phthalocyanine</th>
+<th>Note</th>
+<th>Indirizzo (se esistente)</th>
+<th>Latitudine</th>
+<th>Longitudine</th>
+<th>Data</th>
+<th>Descrizione</th>
+</thead>`
+
+tab.style.display = 'none';
+let visible = false;
 
 const getLatestMesuration = () => {
     const queryString = window.location.search;
@@ -32,8 +55,9 @@ const getDatas = async () => {
 
     xhr.onload = function(){
 		if(this.status == 200){
-            if(!this.responseText){
-                err.innerHTML = 'Impossibile trovare tale luogo o misurazione';
+            if(!this.responseText || this.responseText == '[]'){
+                err.style.display = 'block';
+                err.textContent = `Questo luogo non esiste o non sono state fatte misurazioni`;
             }else{
 			    let data = JSON.parse(this.responseText); 
                 let actual = data[0];
@@ -53,8 +77,44 @@ const getDatas = async () => {
                 lon.innerHTML = `<b>Longitudine:</b>${actual.longitudine}`;
                 desc.innerHTML = `<b>Descrizione:</b>${actual.descrizione}`;
                 dataM.innerHTML = `<b>Data:</b>${actual.datam}`;
+                let tBody = ``;
+
+                data.forEach(i => {
+                    tBody += `
+                        <tr>
+                            <td>${i.id}</td>
+                            <td>${i.nome}</td>
+                            <td>${i.tipo_campione}</td>
+                            <td>${i.nylon6}</td>
+                            <td>${i.polyethylene_terephthalate}</td>
+                            <td>${i.polypropylene}</td>
+                            <td>${i.polyethylene}</td>
+                            <td>${i.hostasol_green}</td>
+                            <td>${i.phthalocyanine}</td>
+                            <td>${i.note}</td>
+                            <td>${i.indirizzo}</td>
+                            <td>${i.latitudine}</td>
+                            <td>${i.longitudine}</td>
+                            <td>${i.datam}</td>
+                            <td>${i.descrizione}</td>
+                        </tr>
+                    `
+                });
+                tab.innerHTML = tHead + tBody;
             }         
         }
 	}
 	xhr.send();
 };
+
+const tableV = () => {
+    if(!visible){
+        visible = true;
+        tab.style.display = "block";
+        but.innerHTML = 'Nascondi tutta la storia del sito';
+    }else{
+        visible = false;
+        tab.style.display = "none";
+        but.innerHTML = 'Visualizza tutta la storia del sito';
+    }
+}
