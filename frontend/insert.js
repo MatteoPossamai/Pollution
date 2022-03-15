@@ -3,6 +3,7 @@ const misurazione = document.getElementById('misurazione');
 const sito = document.getElementById('sito');
 const luogo = document.getElementById('luogo');
 const error = document.getElementById('error');
+const success = document.getElementById('inser');
 
 misurazione.style.display = "none";
 sito.style.display = "none";
@@ -50,11 +51,15 @@ campione.addEventListener('submit', (e) => {
     if(!camp){
         error.style.display = 'block';
         error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        success.style.display = 'none';
     }else{
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:5000/addtipocampione', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify({'descrizione': camp}));
+        success.style.display = 'block';
+        success.innerHTML = 'Aggiunto il nuovo campione';
+        error.style.display = 'none';
     }
 });
 
@@ -78,6 +83,7 @@ misurazione.addEventListener('submit', (e) => {
     if(!ny || !pt || !pp || !plt || !hg || !ptl){
         error.style.display = 'block'
         error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        success.style.display = 'none';
     }else{
         let res = JSON.stringify({
             'ny':ny,
@@ -96,6 +102,9 @@ misurazione.addEventListener('submit', (e) => {
         xhr.open('POST', 'http://localhost:5000/addmisurazione', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(res);
+        success.style.display = 'block';
+        success.innerHTML = 'Aggiunta la nuova misurazione';
+        error.style.display = 'none';
     }
 });
 
@@ -106,11 +115,15 @@ sito.addEventListener('submit', (e) => {
     if(!sit){
         error.style.display = 'block'
         error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        success.style.display = 'none';
     }else{
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:5000/addtiposito', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify({'descrizione':sit}));
+        success.style.display = 'block';
+        success.innerHTML = 'Aggiunto il nuovo sito';
+        error.style.display = 'none';
     }
 });
 
@@ -126,6 +139,7 @@ luogo.addEventListener('submit', (e) => {
     if(!nome || !lat || !lng ){
         error.style.display = 'block'
         error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        success.style.display = 'none';
     }else{
         let res = JSON.stringify({
             'nome':nome,
@@ -139,6 +153,9 @@ luogo.addEventListener('submit', (e) => {
         xhr.open('POST', 'http://localhost:5000/addluogo', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(res);
+        success.style.display = 'block';
+        success.innerHTML = 'Aggiunto il nuovo luogo';
+        error.style.display = 'none';
     }
 });
 
