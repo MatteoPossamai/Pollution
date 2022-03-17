@@ -9,12 +9,14 @@
 	<body onload="getDatas()">
         <a href="./index.html" class="home">Ritorna alla homepage</a>
 		<h1 class="title">Misurazione</h1>
+
         <div id="error"></div>        
-		<div class="sub">
+		
+        <div class="sub">
 			<p id="id"></p>
             <p id="nome"></p>
             <p id="tipo"></p>
-            <p><b>Rilevazioni plastica:</b></p>
+            <p id="sts"></p>
             <div id="plastica">
                 <p id="ny"></p>
                 <p id="pt"></p>
@@ -32,8 +34,6 @@
             <p id="im1"><b></b></p>
             <p id="im2"><b></b></p>
         </div>
-
-        <button id="but" onclick="tableV()">Visualizza tutta la storia del sito</button>
 
         <table id="tab" style="font-size:10pt">
             <thead>
@@ -54,6 +54,8 @@
                 <th>Descrizione</th>
             </thead>
         </table>
+
+        <button id="but" onclick="tableV()">Visualizza tutta la storia del sito</button>
 
 		<script type="text/javascript" src="page.js"></script>
 	</body>

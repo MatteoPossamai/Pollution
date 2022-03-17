@@ -3,18 +3,17 @@
 body{
     text-align:center;
     font-family: 'EB Garamond', serif;
-    font-weight: bold;
 }
 
 .title{
     font-family: 'EB Garamond', serif;
-    font-size: 35pt;
+    font-size: 30pt;
     font-weight:bolder;
     margin:40px 0;
 }
 
 .sub{
-    font-size:16pt;
+    font-size:14pt;
     letter-spacing:1px;
     margin:50px 0;
 }
@@ -63,7 +62,7 @@ body{
     font-size: 16pt;
 }
 
-.inser{
+#inser{
     background-color:green;
     margin: auto;
     margin-top: 30px;
@@ -113,4 +112,11 @@ table td {
     padding: 50px; 
     border-radius: 20px;
     width: 200px;
+}
+
+#but{
+    padding: 15px;
+    font-weight:bold;
+    font-size: 10pt;
+    border-radius: 20px;
 }

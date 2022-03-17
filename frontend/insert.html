@@ -1,9 +1,7 @@
 <html>
 	<head>
-        <title>Insert data</title>
+        <title>MAD 4 Science - Insert</title>
 		<link rel="stylesheet" href="style.css">
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 	</head>
 	
 	<body onload="getData()">
@@ -17,14 +15,17 @@
                 <option value="sito">Sito</option>
                 <option value="luogo">Luogo</option>
               </select>
-        
+
+              <br />
+              <div id="error"></div>
+                <div id="inser"></div>
 
             <form id="campione" class="insert">
                 <h1>Nuovo campione</h1>
                 <p>Inserisci il tipo di campione:</p>
                 <input type="text" id="camp" placeholder="Campione..." />
-                <br/>
-                <button type="submit">Aggiungi</button>
+                <br/><br />
+                <button type="submit" id="but">Aggiungi</button>
             </form>
 
             <form method="POST" id="misurazione" class="insert">
@@ -55,16 +56,16 @@
                 </select>
                 <p>Data:</p>
                 <input id="data" type="date" />
-                <br/>
-                <button type="submit">Aggiungi</button>
+                <br/><br />
+                <button type="submit" id="but">Aggiungi</button>
             </form>
 
             <form method="POST" id="sito" class="insert">
                 <h1>Nuovo sito</h1>
                 <p>Inserisci il tipo di sito:</p>
                 <input type="text" id="sit" placeholder="Sito..." />
-                <br/>
-                <button type="submit">Aggiungi</button>
+                <br/><br />
+                <button type="submit" id="but">Aggiungi</button>
             </form>
 
             <form method="POST" id="luogo" class="insert">
@@ -83,14 +84,11 @@
                 <input type="text" id="desc" placeholder="Descrizione" />
                 <p>Indirizzo:</p>
                 <input type="text" id="ind" placeholder="Indirizzo" />
-                <br/>
-                <button type="submit">Aggiungi</button>
+                <br/><br />
+                <button type="submit" id="but">Aggiungi</button>
             </form>
 
         </div>
-
-        <div id="error"></div>
-        <div id="inser"></div>
 		
 		<script type="text/javascript" src="insert.js"></script>
 	</body>

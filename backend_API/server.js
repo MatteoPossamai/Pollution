@@ -2,9 +2,12 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+//Import enviromental variabiles
+require('dotenv').config();
+
 //Initializing
 const app = express(); 
-const port = 5000;
+const port = process.env.SERVER_PORT || 5000;
 
 //Let imported functionality working
 app.use(cors());

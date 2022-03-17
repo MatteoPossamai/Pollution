@@ -16,24 +16,25 @@ const dataM = document.getElementById('data');
 const err = document.getElementById('error');
 const tab = document.getElementById('tab');
 const but = document.getElementById('but');
+const sts = document.getElementById('sts');
 
-const tHead = `<thead>
-<th>ID</th>
-<th>Nome sito</th>
-<th>Tipo campione</th>
-<th>Nylon 6</th>
-<th>Polyethylene terephthalate</th>
-<th>Polypropylene</th>
-<th>Polyethylene</th>
-<th>Hostasol green</th>
-<th>Phthalocyanine</th>
-<th>Note</th>
-<th>Indirizzo (se esistente)</th>
-<th>Latitudine</th>
-<th>Longitudine</th>
-<th>Data</th>
-<th>Descrizione</th>
-</thead>`
+const tHead = ` <thead>
+                    <th>ID</th>
+                    <th>Nome sito</th>
+                    <th>Tipo campione</th>
+                    <th>Nylon 6</th>
+                    <th>Polyethylene terephthalate</th>
+                    <th>Polypropylene</th>
+                    <th>Polyethylene</th>
+                    <th>Hostasol green</th>
+                    <th>Phthalocyanine</th>
+                    <th>Note</th>
+                    <th>Indirizzo (se esistente)</th>
+                    <th>Latitudine</th>
+                    <th>Longitudine</th>
+                    <th>Data</th>
+                    <th>Descrizione</th>
+                </thead>`
 
 tab.style.display = 'none';
 let visible = false;
@@ -50,6 +51,8 @@ const getLatestMesuration = () => {
 const getDatas = async () => {
     let xhr = new XMLHttpRequest();
     let nome = getLatestMesuration();
+    err.style.display = 'block';
+    err.textContent = `Questo luogo non esiste o non sono state fatte misurazioni`;
 
 	xhr.open('GET', `http://localhost:5000/getmisurazione/${nome}`, true);
 
@@ -59,12 +62,14 @@ const getDatas = async () => {
                 err.style.display = 'block';
                 err.textContent = `Questo luogo non esiste o non sono state fatte misurazioni`;
             }else{
+                err.style.display = 'none';
 			    let data = JSON.parse(this.responseText); 
                 let actual = data[0];
 
                 id.innerHTML = `<b>Id della misurazione:</b>BL_${actual.id}`;
                 nomeS.innerHTML = `<b>Nome del sito:</b>${actual.nome}`;
                 tipo.innerHTML = `<b>Tipo di campione:</b>${actual.tipo_campione}`;//Convert into string
+                sts.innerHTML = `<b>Rilevazioni plastica:</b>`
                 ny.innerHTML = `Nylon 6:${actual.nylon6}`;
                 pt.innerHTML = `Polyethylene terephthalate:${actual.polyethylene_terephthalate}`;
                 pp.innerHTML = `Polypropylene:${actual.polypropylene}`;
@@ -100,7 +105,7 @@ const getDatas = async () => {
                         </tr>
                     `
                 });
-                tab.innerHTML = tHead + tBody;
+                tab.innerHTML = tHead + tBody + '<br />';
             }         
         }
 	}

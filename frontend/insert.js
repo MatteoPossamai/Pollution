@@ -165,6 +165,10 @@ let tipi_siti = [];
    
 
 const getData = async () => {
+    if(false){
+        //if it is not logged
+        window.location.assign('http://127.0.0.1:5500/login.html');
+    }
 	getCampioni();
     getLuoghi();  
     getSiti();  
