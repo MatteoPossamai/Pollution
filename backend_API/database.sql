@@ -1,5 +1,14 @@
 CREATE DATABASE campione;
 
+CREATE TABLE tipoSito(
+    id SERIAL PRIMARY KEY,
+    descrizione VARCHAR(255)
+);
+
+CREATE TABLE tipoCampione(
+    id SERIAL PRIMARY KEY,
+    descrizione VARCHAR(255)
+);
  
 CREATE TABLE luogo(
     nome VARCHAR(255),
@@ -29,14 +38,4 @@ CREATE TABLE misurazione(
     dataM DATE,
     FOREIGN KEY (luogo) REFERENCES luogo(nome),
     FOREIGN KEY (tipo_campione) REFERENCES tipoCampione(id)
-);
-
-CREATE TABLE tipoSito(
-    id SERIAL PRIMARY KEY,
-    descrizione VARCHAR(255)
-);
-
-CREATE TABLE tipoCampione(
-    id SERIAL PRIMARY KEY,
-    descrizione VARCHAR(255)
 );
