@@ -50,7 +50,10 @@ campione.addEventListener('submit', (e) => {
     let camp = document.getElementById('camp').value;
     if(!camp){
         error.style.display = 'block';
-        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        error.innerHTML = `<span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text" id="">Un campo necessario non <br>è stato riempito adeguatamente
+        </span>`; 
         success.style.display = 'none';
     }else{
         let xhr = new XMLHttpRequest();
@@ -162,6 +165,10 @@ luogo.addEventListener('submit', (e) => {
 let tipi_campioni = [];
 let luoghi = [];
 let tipi_siti = [];
+const cth = `<thead>
+                <th>ID</th>
+                <th>Descrizione</th>
+            </thead>`;
    
 
 const getData = async () => {
@@ -171,13 +178,17 @@ const getData = async () => {
     }
 	getCampioni();
     getLuoghi();  
-    getSiti();  
+    getSiti();
 }
 
 let getCampioni = () => {
     //Request per campioni
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'http://localhost:5000/getallcampioni', true);
+
+    const clist = document.getElementById('clist');
+    let tbd = '';
+
 	xhr.onload = function(){
 		if(this.status == 200){
 			tipi_campioni = JSON.parse(this.responseText); 
@@ -187,7 +198,13 @@ let getCampioni = () => {
                 opt.appendChild( document.createTextNode(`${campione.descrizione}`) );
                 opt.value = `${campione.id}`;
                 sel1.appendChild(opt); 
+                //Tabella sotto
+                tbd += `<tr>
+                            <td>${campione.id}</td>
+                            <td>${campione.descrizione}</td>
+                        </tr>`
 			})
+            clist.innerHTML = cth + tbd;
 		}
 	}
 	xhr.send();
@@ -197,6 +214,18 @@ let getLuoghi = () => {
     //Request per luoghi
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:5000/getallluoghi', true);
+
+    const cth1 = `<thead>
+                    <th>Nome</th>
+                    <th>Tipo sito</th>
+                    <th>Latitudine</th>
+                    <th>Longitudine</th>
+                    <th>Descrizione</th>
+                    <th>Indirizzo</th>
+                </thead>`;
+    let tbd = '';
+    const llist = document.getElementById('llist');
+
 	xhr.onload = function(){
 		if(this.status == 200){
 			luoghi = JSON.parse(this.responseText); 
@@ -206,7 +235,17 @@ let getLuoghi = () => {
                 opt.appendChild( document.createTextNode(`${luogo.nome}`) );
                 opt.value = `${luogo.nome}`;
                 sel2.appendChild(opt); 
+                //Table
+                tbd +=  `<tr>
+                            <td>${luogo.nome}</td>
+                            <td>${luogo.tipo_sito}</td>
+                            <td>${luogo.latitudine}</td>
+                            <td>${luogo.longitudine}</td>
+                            <td>${luogo.descrizione}</td>
+                            <td>${luogo.indirizzo}</td>
+                        </tr>`
 			})
+            llist.innerHTML = cth1 + tbd;
 		}
 	}
 	xhr.send();
@@ -216,6 +255,10 @@ let getSiti = () => {
     //Request per siti
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:5000/getallsiti', true);
+
+    let tbd = '';
+    const slist = document.getElementById('slist');
+
 	xhr.onload = function(){
 		if(this.status == 200){
 			siti = JSON.parse(this.responseText); 
@@ -224,8 +267,14 @@ let getSiti = () => {
                 let opt = document.createElement('option'); 
                 opt.appendChild( document.createTextNode(`${sito.descrizione}`) );
                 opt.value = `${sito.id}`;
-                sel3.appendChild(opt); 
+                sel3.appendChild(opt);
+                //Table
+                tbd += `<tr>
+                            <td>${sito.id}</td>
+                            <td>${sito.descrizione}</td>
+                        </tr>`
 			})
+            slist.innerHTML = cth + tbd;
 		}
 	}
 	xhr.send();

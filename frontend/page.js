@@ -52,7 +52,10 @@ const getDatas = async () => {
     let xhr = new XMLHttpRequest();
     let nome = getLatestMesuration();
     err.style.display = 'block';
-    err.textContent = `Questo luogo non esiste o non sono state fatte misurazioni`;
+    err.innerHTML = `<span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front text">Questo luogo non esiste o non <br>sono state fatte misurazioni
+    </span>`;
 
 	xhr.open('GET', `http://localhost:5000/getmisurazione/${nome}`, true);
 
@@ -60,7 +63,11 @@ const getDatas = async () => {
 		if(this.status == 200){
             if(!this.responseText || this.responseText == '[]'){
                 err.style.display = 'block';
-                err.textContent = `Questo luogo non esiste o non sono state fatte misurazioni`;
+                err.innerHTML = `<span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front text">Questo luogo non esiste o non <br>sono state fatte misurazioni
+    </span>`;
+
             }else{
                 err.style.display = 'none';
 			    let data = JSON.parse(this.responseText); 

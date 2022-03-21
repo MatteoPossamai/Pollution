@@ -5,7 +5,10 @@
 	</head>
 	
 	<body onload="getData()">
-        <a href="./index.html" class="home">Ritorna alla homepage</a>
+        <a href="./index.html" class="send" id="home">
+            <span>Torna alla home</span>
+            <div class="liquid"></div>
+        </a>
 		<h1 class="title">Pagina di inserimento</h1>
 
         <div>
@@ -16,19 +19,33 @@
                 <option value="luogo">Luogo</option>
               </select>
 
-              <br />
-              <div id="error"></div>
-                <div id="inser"></div>
+            <br />
 
-            <form id="campione" class="insert">
+            <div class="e" id="error">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front text" id="">Un campo necessario non <br>è stato riempito adeguatamente
+                </span>
+            </div> 
+            <div id="inser"></div>
+
+            <form id="campione" class="log">
                 <h1>Nuovo campione</h1>
                 <p>Inserisci il tipo di campione:</p>
                 <input type="text" id="camp" placeholder="Campione..." />
                 <br/><br />
-                <button type="submit" id="but">Aggiungi</button>
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+                
+                <h3>Attuali campioni</h3>
+                <table id="clist">
+                    <!--All the datas-->
+                </table>
             </form>
 
-            <form method="POST" id="misurazione" class="insert">
+            <form method="POST" id="misurazione" class="log">
                 <h1>Nuova misurazione</h1>
                 <p>Inserire la quantità di nylon6:</p>
                 <input type="number" id="ny" placeholder="Quantità" />
@@ -57,18 +74,28 @@
                 <p>Data:</p>
                 <input id="data" type="date" />
                 <br/><br />
-                <button type="submit" id="but">Aggiungi</button>
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
             </form>
 
-            <form method="POST" id="sito" class="insert">
+            <form method="POST" id="sito" class="log">
                 <h1>Nuovo sito</h1>
                 <p>Inserisci il tipo di sito:</p>
                 <input type="text" id="sit" placeholder="Sito..." />
                 <br/><br />
-                <button type="submit" id="but">Aggiungi</button>
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+                <h3>Attuali siti</h3>
+                <table id="slist">
+                    <!--All the datas-->
+                </table>
             </form>
 
-            <form method="POST" id="luogo" class="insert">
+            <form method="POST" id="luogo" class="log" width="">
                 <h1>Nuovo luogo</h1>
                 <p>Nome del luogo:</p>
                 <input type="text" id="nome" placeholder="Nome del luogo" />
@@ -85,7 +112,14 @@
                 <p>Indirizzo:</p>
                 <input type="text" id="ind" placeholder="Indirizzo" />
                 <br/><br />
-                <button type="submit" id="but">Aggiungi</button>
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+                <h3>Attuali luoghi</h3>
+                <table id="llist">
+                    <!--All the datas-->
+                </table>
             </form>
 
         </div>
