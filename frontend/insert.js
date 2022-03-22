@@ -140,7 +140,7 @@ luogo.addEventListener('submit', (e) => {
     let desc = document.getElementById('desc').value;
     let ind = document.getElementById('ind').value;
     if(!nome || !lat || !lng ){
-        error.style.display = 'block'
+        error.style.display = 'block';
         error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
         success.style.display = 'none';
     }else{
