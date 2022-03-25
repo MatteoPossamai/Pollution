@@ -25,7 +25,7 @@ const getPoint = async () => {
 	//Generate the request object
 	let xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'http://localhost:5000/allpoints', true);
+	xhr.open('GET', 'http://mad4feltre.herokuapp.com/allpoints', true);
 
 	//Gets data from the API, and puts all the positions
 	xhr.onload = function(){

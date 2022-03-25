@@ -57,7 +57,7 @@ campione.addEventListener('submit', (e) => {
         success.style.display = 'none';
     }else{
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:5000/addtipocampione', true);
+        xhr.open('POST', 'http://mad4feltre.herokuapp.com/addtipocampione', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify({'descrizione': camp}));
         success.style.display = 'block';
@@ -102,7 +102,7 @@ misurazione.addEventListener('submit', (e) => {
             'dataM': data
         });
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:5000/addmisurazione', true);
+        xhr.open('POST', 'http://mad4feltre.herokuapp.com/addmisurazione', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(res);
         success.style.display = 'block';
@@ -121,7 +121,7 @@ sito.addEventListener('submit', (e) => {
         success.style.display = 'none';
     }else{
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:5000/addtiposito', true);
+        xhr.open('POST', 'http://mad4feltre.herokuapp.com/addtiposito', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify({'descrizione':sit}));
         success.style.display = 'block';
@@ -153,7 +153,7 @@ luogo.addEventListener('submit', (e) => {
             'indirizzo': ind
         });
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:5000/addluogo', true);
+        xhr.open('POST', 'http://mad4feltre.herokuapp.com/addluogo', true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(res);
         success.style.display = 'block';
@@ -184,7 +184,7 @@ const getData = async () => {
 let getCampioni = () => {
     //Request per campioni
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:5000/getallcampioni', true);
+	xhr.open('GET', 'http://mad4feltre.herokuapp.com/getallcampioni', true);
 
     const clist = document.getElementById('clist');
     let tbd = '';
@@ -213,7 +213,7 @@ let getCampioni = () => {
 let getLuoghi = () => {
     //Request per luoghi
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:5000/getallluoghi', true);
+    xhr.open('GET', 'http://mad4feltre.herokuapp.com/getallluoghi', true);
 
     const cth1 = `<thead>
                     <th>Nome</th>
@@ -254,7 +254,7 @@ let getLuoghi = () => {
 let getSiti = () => {
     //Request per siti
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:5000/getallsiti', true);
+    xhr.open('GET', 'http://mad4feltre.herokuapp.com/getallsiti', true);
 
     let tbd = '';
     const slist = document.getElementById('slist');

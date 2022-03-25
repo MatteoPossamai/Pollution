@@ -57,7 +57,7 @@ const getDatas = async () => {
     <span class="front text">Questo luogo non esiste o non <br>sono state fatte misurazioni
     </span>`;
 
-	xhr.open('GET', `http://localhost:5000/getmisurazione/${nome}`, true);
+	xhr.open('GET', `http://mad4feltre.herokuapp.com/getmisurazione/${nome}`, true);
 
     xhr.onload = function(){
 		if(this.status == 200){
