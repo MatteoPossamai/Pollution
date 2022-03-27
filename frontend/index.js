@@ -15,7 +15,7 @@ const clicked = (e) => {
 	//Check what marker has been clicked, and then print the name
 	points.forEach(point=>{
 		if(point.latitudine === e.latlng.lat && point.longitudine === e.latlng.lng){
-			location.replace(`http://127.0.0.1:5500/page.html?nome=${point.nome}`)
+			location.replace(`https://mad4feltre.altervista.org/page.html?nome=${point.nome}`)
 		}
 	});
 };
@@ -25,7 +25,7 @@ const getPoint = async () => {
 	//Generate the request object
 	let xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'http://mad4feltre.herokuapp.com/allpoints', true);
+	xhr.open('GET', 'https://mad4feltre.herokuapp.com/allpoints', true);
 
 	//Gets data from the API, and puts all the positions
 	xhr.onload = function(){
@@ -42,3 +42,4 @@ const getPoint = async () => {
 	//Send the request and wait for responde
 	xhr.send();
 }
+//j,6"4xk~5Wn^&2EE

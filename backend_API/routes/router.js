@@ -155,4 +155,46 @@ router.get('/getallluoghi', async (req, res) => {
     }
 });
 
+router.delete('/deletesiti/:id', async (req, res) => {
+    const id = req.params.id; 
+
+    try {
+        await pool.query(`
+            DELETE FROM tipoSito
+            WHERE id = ($1)
+        `, [id])
+        res.json('Deleted the site from the database')
+    }catch(err){
+        console.error(err);
+    }
+})
+
+router.delete('/deletecampione/:id', async (req, res) => {
+    const id = req.params.id; 
+
+    try {
+        await pool.query(`
+            DELETE FROM tipoCampione
+            WHERE id = ($1)
+        `, [id])
+        res.json('Deleted the campione from the database')
+    }catch(err){
+        console.error(err);
+    }
+})
+
+router.delete('/deleteluogo/:id', async (req, res) => {
+    const id = req.params.id; 
+
+    try {
+        await pool.query(`
+            DELETE FROM luogo
+            WHERE nome = ($1)
+        `, [id])
+        res.json('Deleted the luogos from the database')
+    }catch(err){
+        console.error(err);
+    }
+})
+
 module.exports = router;
