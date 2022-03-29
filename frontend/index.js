@@ -34,7 +34,6 @@ const getPoint = async () => {
 			points = JSON.parse(this.responseText); 
 			points.forEach((point) =>{
 				let marker = L.marker([point.latitudine, point.longitudine]).addTo(mymap);
-				marker.bindPopup(`${point.nome}`).openPopup();
 				marker.on('click', clicked);
 			})
 		}

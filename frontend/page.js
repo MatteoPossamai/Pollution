@@ -103,8 +103,8 @@ const getDatas = async () => {
                         <tr>
                             <td>${i.id}</td>
                             <td>${i.nome}</td>
-                            <td>${campione}</td>
-                            <td>${sito}</td>
+                            <td id="cpp">${campione}</td>
+                            <td id="stt">${sito}</td>
                             <td>${i.nylon6}</td>
                             <td>${i.polyethylene_terephthalate}</td>
                             <td>${i.polypropylene}</td>
@@ -149,6 +149,7 @@ let getCampioni = async (i) => {
         campione = data[parseInt(i) - 1].descrizione;
         //console.log(campione)
         tipo.innerHTML = `<b>Tipo di campione:</b>${campione}`;
+        document.getElementById("cpp").innerHTML = campione;
     })
 }
 
@@ -159,5 +160,7 @@ let getSiti = (i) => {
         sito = data[parseInt(i) - 1].descrizione;
         //console.log(sito)
         ts.innerHTML = `<b>Tipo di sito:</b>${sito}`;
+        document.getElementById("stt").innerHTML = sito;
+        
     })
 }
