@@ -197,4 +197,29 @@ router.delete('/deleteluogo/:id', async (req, res) => {
     }
 })
 
+router.delete('/deletemisurazione/:id', async (req, res) => {
+    const id = req.params.id; 
+
+    try {
+        await pool.query(`
+            DELETE FROM misurazione
+            WHERE id = ($1)
+        `, [id])
+        res.json('Deleted the luogos from the database')
+    }catch(err){
+        console.error(err);
+    }
+})
+
+router.get('/getallmisurazioni', async (req, res) => {
+        try {
+            const misurazioni = await pool.query(
+                `SELECT *
+                FROM misurazione`);
+            res.json(misurazioni.rows);
+        }catch(err){
+            console.error(err.message);
+        }
+})
+
 module.exports = router;

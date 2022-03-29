@@ -17,11 +17,14 @@ const err = document.getElementById('error');
 const tab = document.getElementById('tab');
 const but = document.getElementById('but');
 const sts = document.getElementById('sts');
+const ts = document.getElementById('ts');
+let data = {};
 
 const tHead = ` <thead>
                     <th>ID</th>
                     <th>Nome sito</th>
                     <th>Tipo campione</th>
+                    <th>Tipo sito</th>
                     <th>Nylon 6</th>
                     <th>Polyethylene terephthalate</th>
                     <th>Polypropylene</th>
@@ -49,6 +52,7 @@ const getLatestMesuration = () => {
 };
 
 const getDatas = async () => {
+    //Request per dati
     let xhr = new XMLHttpRequest();
     let nome = getLatestMesuration();
     err.style.display = 'block';
@@ -70,12 +74,15 @@ const getDatas = async () => {
 
             }else{
                 err.style.display = 'none';
-			    let data = JSON.parse(this.responseText); 
+			    data = JSON.parse(this.responseText); 
                 let actual = data[0];
+                getSiti(actual.tipo_sito);
+                getCampioni(actual.tipo_campione);
 
                 id.innerHTML = `<b>Id della misurazione:</b>BL_${actual.id}`;
                 nomeS.innerHTML = `<b>Nome del sito:</b>${actual.nome}`;
-                tipo.innerHTML = `<b>Tipo di campione:</b>${actual.tipo_campione}`;//Convert into string
+                
+                
                 sts.innerHTML = `<b>Rilevazioni plastica:</b>`
                 ny.innerHTML = `Nylon 6:${actual.nylon6}`;
                 pt.innerHTML = `Polyethylene terephthalate:${actual.polyethylene_terephthalate}`;
@@ -96,7 +103,8 @@ const getDatas = async () => {
                         <tr>
                             <td>${i.id}</td>
                             <td>${i.nome}</td>
-                            <td>${i.tipo_campione}</td>
+                            <td>${campione}</td>
+                            <td>${sito}</td>
                             <td>${i.nylon6}</td>
                             <td>${i.polyethylene_terephthalate}</td>
                             <td>${i.polypropylene}</td>
@@ -129,4 +137,27 @@ const tableV = () => {
         tab.style.display = "none";
         but.innerHTML = 'Visualizza tutta la storia del sito';
     }
+}
+
+let campione = "";
+let sito = "";
+
+let getCampioni = async (i) => {
+   fetch("https://mad4feltre.herokuapp.com/getallcampioni")
+    .then(res => res.json())
+    .then(data => {
+        campione = data[parseInt(i) - 1].descrizione;
+        //console.log(campione)
+        tipo.innerHTML = `<b>Tipo di campione:</b>${campione}`;
+    })
+}
+
+let getSiti = (i) => {
+    fetch("https://mad4feltre.herokuapp.com/getallsiti")
+    .then(res => res.json())
+    .then(data => {
+        sito = data[parseInt(i) - 1].descrizione;
+        //console.log(sito)
+        ts.innerHTML = `<b>Tipo di sito:</b>${sito}`;
+    })
 }
