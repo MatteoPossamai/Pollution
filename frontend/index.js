@@ -43,7 +43,4 @@ const getPoint = async () => {
 	xhr.send();
 }
 //j,6"4xk~5Wn^&2EE
-<<<<<<< HEAD
 //https://app.netlify.com/sites/mad4feltre/deploys
-=======
->>>>>>> 061e74e3a185dc46e7c9a53500e46dbc4cafd0f4

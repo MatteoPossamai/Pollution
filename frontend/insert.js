@@ -85,7 +85,10 @@ misurazione.addEventListener('submit', (e) => {
 
     if(!ny || !pt || !pp || !plt || !hg || !ptl){
         error.style.display = 'block'
-        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        error.innerHTML = `<span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text" id="">Un campo necessario non <br>è stato riempito adeguatamente
+        </span>`;  
         success.style.display = 'none';
     }else{
         let res = JSON.stringify({
@@ -117,7 +120,10 @@ sito.addEventListener('submit', (e) => {
     let sit = document.getElementById('sit').value;
     if(!sit){
         error.style.display = 'block'
-        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        error.innerHTML = `<span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text" id="">Un campo necessario non <br>è stato riempito adeguatamente
+        </span>`;  
         success.style.display = 'none';
     }else{
         let xhr = new XMLHttpRequest();
@@ -135,23 +141,28 @@ luogo.addEventListener('submit', (e) => {
 
     let nome = document.getElementById('nome').value;
     let sel3 = document.getElementById('sel3').value;
+    console.log(sel3)
     let lat = document.getElementById('lat').value;
     let lng = document.getElementById('lng').value;
     let desc = document.getElementById('desc').value;
     let ind = document.getElementById('ind').value;
     if(!nome || !lat || !lng ){
         error.style.display = 'block';
-        error.innerHTML = 'A necessary pitch needs to be fulfilled'; 
+        error.innerHTML = `<span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text" id="">Un campo necessario non <br>è stato riempito adeguatamente
+        </span>`; 
         success.style.display = 'none';
     }else{
         let res = JSON.stringify({
             'nome':nome,
-            'tipostito':sel3,
+            'tiposito':sel3,
             'latitudine': lat,
             'longitudine': lng,
             'descrizione': desc, 
             'indirizzo': ind
         });
+        console.log(res)
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'https://mad4feltre.herokuapp.com/addluogo', true);
         xhr.setRequestHeader("Content-Type", "application/json");
