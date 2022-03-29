@@ -15,7 +15,7 @@ const clicked = (e) => {
 	//Check what marker has been clicked, and then print the name
 	points.forEach(point=>{
 		if(point.latitudine === e.latlng.lat && point.longitudine === e.latlng.lng){
-			location.replace(`https://mad4feltre.altervista.org/page.html?nome=${point.nome}`)
+			location.replace(`./page.html?nome=${point.nome}`)
 		}
 	});
 };
