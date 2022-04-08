@@ -1,0 +1,149 @@
+<?php
+
+session_start();
+
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+
+if (!$username) {
+    header("Location: ./login.php");
+    die();
+}
+
+if (isset($_REQUEST['logout'])){
+    session_unset();
+    session_destroy();
+    header("Location: ./index.html");
+    die();
+}
+
+?>
+<html>
+	<head>
+        <title>MAD 4 Science - Insert</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body onload="getData()">
+
+        <form action="" method="POST">
+            <input type="submit" name="logout" value="HOME - LOGOUT" class="send" id="home" style="border: 1px solid black" />
+        </form>
+		
+        <h1 class="title">Pagina di inserimento</h1>
+
+        <div>
+            <select method="POST" name="typesof" id="typesof" onchange='changeActive()'>
+                <option value="campione">Campione</option>
+                <option value="misurazione">Misurazione</option>
+                <option value="sito">Sito</option>
+                <option value="luogo">Luogo</option>
+              </select>
+
+            <br />
+
+            <div class="e" id="error">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front text" id="">Un campo necessario non <br>è stato riempito adeguatamente
+                </span>
+            </div> 
+            <div id="inser"></div>
+
+            <form id="campione" class="log">
+                <h1>Nuovo campione</h1>
+                <p>Inserisci il tipo di campione:</p>
+                <input type="text" id="camp" placeholder="Campione..." />
+                <br/><br />
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+                
+                <h3>Attuali campioni</h3>
+                <table id="clist">
+                    <!--All the datas-->
+                </table>
+            </form>
+
+            <form method="POST" id="misurazione" class="log">
+                <h1>Nuova misurazione</h1>
+                <p>Inserire la quantità di nylon6:</p>
+                <input type="number" id="ny" placeholder="Quantità" step="any" />
+                <p>Inserire la quantità di polyethylene terephthalate:</p>
+                <input type="number" id="pt" placeholder="Quantità" step="any" />
+                <p>Inserire la quantità di polypropylene:</p>
+                <input type="number" id="pp" placeholder="Quantità" step="any" />
+                <p>Inserire la quantità di polyethylene:</p>
+                <input type="number" id="plt" placeholder="Quantità" step="any" />
+                <p>Inserire la quantità di hostasol green:</p>
+                <input type="number" id="hg" placeholder="Quantità" step="any" />
+                <p>Inserire la quantità di phthalocyanine:</p>
+                <input type="number" id="ptl" placeholder="Quantità" step="any" />
+                <p>Tipo campione:</p>
+                <select id="sel1">
+                    <!--Inserire tutti i campioni che trovi nel database-->
+                </select>
+                <p>Meteo del giorno:</p>
+                <input type="text" id="meteo" placeholder="Meteo" />
+                <p>Note:</p>
+                <input type="text" id="note" placeholder="Note" />
+                <p>Luogo:</p>
+                <select id="sel2">
+                    <!--Inserire tutti i luoghi che trovi nel database-->
+                </select>
+                <p>Data:</p>
+                <input id="data" type="date" />
+                <br/><br />
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+            </form>
+
+            <form method="POST" id="sito" class="log">
+                <h1>Nuovo sito</h1>
+                <p>Inserisci il tipo di sito:</p>
+                <input type="text" id="sit" placeholder="Sito..." />
+                <br/><br />
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+                <h3>Attuali siti</h3>
+                <table id="slist">
+                    <!--All the datas-->
+                </table>
+            </form>
+
+            <form method="POST" id="luogo" class="log" width="" action="">
+                <h1>Nuovo luogo</h1>
+                <p>Nome del luogo:</p>
+                <input type="text" id="nome" placeholder="Nome del luogo" />
+                <p>Tipo sito:</p>
+                <select id="sel3">
+                    <!--Inserire tutti i siti che trovi nel database-->
+                </select>
+                <p>Latitudine:</p>
+                <input type="number" id="lat" placeholder="Latitudine" step="any" />
+                <p>Longitudine:</p>
+                <input type="number" id="lng" placeholder="Longitudine" step="any" />
+                <p>Descrizione:</p>
+                <input type="text" id="desc" placeholder="Descrizione" />
+                <p>Indirizzo:</p>
+                <input type="text" id="ind" placeholder="Indirizzo" />
+                <br/><br />
+                <button type="submit" class="send">
+                    <span>Aggiungi</span>
+                    <div class="liquid"></div>
+                  </button>
+                <h3>Attuali luoghi</h3>
+                <table id="llist">
+                    <!--All the datas-->
+                </table>
+            </form>
+
+        </div>
+		
+		<script type="text/javascript" src="insert.js"></script>
+	</body>
+</html>

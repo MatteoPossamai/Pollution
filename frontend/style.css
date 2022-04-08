@@ -89,7 +89,7 @@ table td {
     border-radius: 20px;
     width: fit-content;
     max-width: 550px;
-    box-shadow: 5px 10px 18px#ed786f;
+    box-shadow: 5px 10px 18px #ed786f;
 }
 
 #but{
@@ -283,3 +283,13 @@ table td {
    .e:focus:not(:focus-visible) {
     outline: none;
    }
+
+.dd{
+    color: black;
+    padding: 5px;
+    font-size: 14pt;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: red;
+}
