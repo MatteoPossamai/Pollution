@@ -20,6 +20,4 @@ app.use('',router);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port:${port}`);
-})
-
-//https://help.heroku.com/DR0TTWWD/seeing-fatal-no-pg_hba-conf-entry-errors-in-postgres
+});

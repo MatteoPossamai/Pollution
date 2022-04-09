@@ -222,4 +222,24 @@ router.get('/getallmisurazioni', async (req, res) => {
         }
 })
 
+router.post('/login', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log(req.body)
+
+    try {
+        const user = await pool.query(
+            `SELECT * FROM utente WHERE username= ($1) AND password = MD5($2)`, [username, password]
+        );
+        console.log(user.rows);
+        if(user.rows.length != 0){
+            res.json('ACCEPTED');
+        }else{
+            res.json('NOT ACCEPTED');
+        }
+    }catch(err){
+        console.error(err.message);
+    }
+})
+
 module.exports = router;

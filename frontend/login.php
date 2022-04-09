@@ -1,3 +1,14 @@
+<?php
+//Start session
+session_start();
+
+if ($_SESSION['username']) {
+    header("Location: ./insert.php");
+    die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -39,3 +39,9 @@ CREATE TABLE misurazione(
     FOREIGN KEY (luogo) REFERENCES luogo(nome),
     FOREIGN KEY (tipo_campione) REFERENCES tipoCampione(id)
 );
+
+CREATE TABLE utente (
+  username VARCHAR(20) NOT NULL,
+  password VARCHAR(32) NOT NULL,
+  PRIMARY KEY (username,password)
+);
