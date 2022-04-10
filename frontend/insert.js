@@ -183,10 +183,14 @@ const cth = `<thead>
    
 
 const getData = async () => {
-    if(false){
-        //if it is not logged
-        window.location.assign('http://127.0.0.1:5500/login.html');
-    }
+    fetch('https://mad4feltre.herokuapp.com/logged')
+        .then(res => res.json())
+        .then(data => {
+            if(data['logged'] == 'false'){
+                location.replace(`./login.html`)
+            }
+        });
+    
 	getCampioni();
     getLuoghi();  
     getSiti();

@@ -1,16 +1,31 @@
-let nome = document.getElementById("nome").value;
-let psw = document.getElementById("psw").value;
+let username = document.getElementById("nome").value;
+let password = document.getElementById("psw").value;
 
 const checkLogin = async () => {
-	let xhr = new XMLHttpRequest();
-
-	xhr.open('POST', 'http://localhost:5000/checkPassword', true);
-
-	xhr.onload = function(){
-		if(this.status == 200 && true){//check if answer is positive
-			sessionStorage.setItem("logged", "true");
+	fetch('https://mad4feltre.herokuapp.com/logged')
+	.then(res => res.json())
+	.then(data => {
+		if(data['logged'] == 'true'){
+			location.replace(`./insert.html`)
 		}
+	});
+
+	try {
+		const response = await fetch('https://mad4feltre.herokuapp.com/login', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				username: username,
+				password: password
+			})
+		});
+		const json = await response.json();
+		console.log(json);
+
+	} catch (err) {
+		console.error(err);
 	}
-	//Send the request and wait for responde
-	xhr.send([nome, psw]);//??
 }

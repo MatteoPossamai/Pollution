@@ -225,21 +225,36 @@ router.get('/getallmisurazioni', async (req, res) => {
 router.post('/login', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    console.log(req.body)
+    let session = req.session;
 
     try {
         const user = await pool.query(
             `SELECT * FROM utente WHERE username= ($1) AND password = MD5($2)`, [username, password]
         );
-        console.log(user.rows);
+
         if(user.rows.length != 0){
-            res.json('ACCEPTED');
+            session.userid=req.body.username;
+            res.json({'logged':'true'});
         }else{
-            res.json('NOT ACCEPTED');
+            res.json({'logged':'false', 'error':'uncorrect username or password'});
         }
     }catch(err){
         console.error(err.message);
     }
-})
+});
+
+router.get('/logged',(req,res) => {
+    session=req.session;
+    if(session.userid){
+        res.send({'logged':'true'});
+    }else{
+        res.send({'logged':'false'});
+    }
+});
+
+router.get('/logout',(req,res) => {
+    req.session.destroy();
+    res.json({'logged':'false'});
+});
 
 module.exports = router;
