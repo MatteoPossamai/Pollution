@@ -1,31 +1,15 @@
-let username = document.getElementById("nome").value;
-let password = document.getElementById("psw").value;
+let formL = document.getElementById("login");
+let error = document.getElementById("error");
 
-const checkLogin = async () => {
-	fetch('https://mad4feltre.herokuapp.com/logged')
-	.then(res => res.json())
-	.then(data => {
-		if(data['logged'] == 'true'){
-			location.replace(`./insert.html`)
-		}
-	});
-
-	try {
-		const response = await fetch('https://mad4feltre.herokuapp.com/login', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				username: username,
-				password: password
-			})
-		});
-		const json = await response.json();
-		console.log(json);
-
-	} catch (err) {
-		console.error(err);
+formL.addEventListener("submit", async function(e) {
+	e.preventDefault();
+	let username = document.getElementById("nome").value;
+	let password = document.getElementById("psw").value;
+	if (username == "" || password == "") {
+		error.style.display = "block";
+		error.innerHTML = `<p>Fullfill all the pitches</p>`
+	}else{
+		//API call
+		console.log('API CALL')
 	}
-}
+});
