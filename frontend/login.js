@@ -10,6 +10,31 @@ formL.addEventListener("submit", async function(e) {
 		error.innerHTML = `<p>Fullfill all the pitches</p>`
 	}else{
 		//API call
-		console.log('API CALL')
+		let url = 'https://mad4feltre.herokuapp.com/login';
+
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify({
+				username: username,
+				password: password
+			}),
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data)
+			if(data.logged === 'true'){
+				//Set token in localstorage for session management
+				sessionStorage.setItem('token', data.token);
+				//Redirect to insert page
+				window.location.href = './insert.html';
+			}else{
+				error.style.display = "block";
+				error.innerHTML = `<p>${data.error}</p>`
+			}
+		})
 	}
 });

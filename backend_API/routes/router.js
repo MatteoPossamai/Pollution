@@ -3,6 +3,8 @@ const pool = require("../db");
 
 const router = express.Router();
 
+let sha256 = require('js-sha256').sha256;
+
 //Get all the point for the map
 router.get('/allpoints', async (req,res) =>{
     try {
@@ -222,10 +224,13 @@ router.get('/getallmisurazioni', async (req, res) => {
         }
 })
 
+//Login session management
+
+let active = [];
+
 router.post('/login', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    let session = req.session;
 
     try {
         const user = await pool.query(
@@ -233,8 +238,14 @@ router.post('/login', async (req, res) => {
         );
 
         if(user.rows.length != 0){
-            session.userid=req.body.username;
-            res.json({'logged':'true'});
+            let token = sha256(JSON.stringify(new Date()));
+            active.push(token);
+            setTimeout(() => {
+                const index = active.indexOf(token);
+                active.splice(index, 1);
+            } , 1000 * 60 * 60 * 24);
+            console.log(active)
+            res.json({'logged':'true', 'token': token});
         }else{
             res.json({'logged':'false', 'error':'uncorrect username or password'});
         }
@@ -243,9 +254,9 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/logged',(req,res) => {
-    session=req.session;
-    if(session.userid){
+router.get('/logged/:token',(req,res) => {
+    const token = req.params.token;
+    if(active.includes(token)){
         res.send({'logged':'true'});
     }else{
         res.send({'logged':'false'});
@@ -253,7 +264,6 @@ router.get('/logged',(req,res) => {
 });
 
 router.get('/logout',(req,res) => {
-    req.session.destroy();
     res.json({'logged':'false'});
 });
 

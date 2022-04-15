@@ -2,25 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
 
 //Import enviromental variabiles
 require('dotenv').config();
 
-//Get one day in milliseconds
-const oneDay = 86400000;
-
 //Initializing
 const app = express(); 
 const port = process.env.PORT || 5000;
-
-//Setup session and cookie
-app.use(sessions({
-    secret: process.env.SECRET,
-    saveUninitialized:true,
-    cookie: { maxAge: oneDay },
-    resave: false 
-}));
 
 app.use(cookieParser());
 
