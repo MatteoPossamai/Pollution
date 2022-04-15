@@ -183,7 +183,6 @@ const cth = `<thead>
    
 
 const getData = async () => {
-    console.log()
     fetch(`https://mad4feltre.herokuapp.com/logged/${sessionStorage.getItem('token')}`)
         .then(res => res.json())
         .then(data => {

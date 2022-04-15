@@ -1,6 +1,14 @@
 let formL = document.getElementById("login");
 let error = document.getElementById("error");
 
+fetch(`https://mad4feltre.herokuapp.com/logged/${sessionStorage.getItem('token')}`)
+.then(res => res.json())
+.then(data => {
+	if(data['logged'] == 'true'){
+		location.replace(`./insert.html`)
+	}
+});
+
 formL.addEventListener("submit", async function(e) {
 	e.preventDefault();
 	let username = document.getElementById("nome").value;
