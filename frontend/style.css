@@ -293,3 +293,15 @@ table td {
     border-radius: 20px;
     background-color: red;
 }
+
+#error{
+    font-size: 14pt;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: red;
+    height: 80px;
+    width: 200px;
+    margin:auto;
+    display:none;
+}
