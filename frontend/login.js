@@ -5,7 +5,7 @@ formL.addEventListener("submit", async function(e) {
 	e.preventDefault();
 	let username = document.getElementById("nome").value;
 	let password = document.getElementById("psw").value;
-	if (username == "" || password == "") {
+	if (username === "" || password === "") {
 		error.style.display = "block";
 		error.innerHTML = `<p>Fullfill all the pitches</p>`
 	}else{
